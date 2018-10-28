@@ -1,0 +1,3 @@
+interface actionInt {
+  type: string
+}
