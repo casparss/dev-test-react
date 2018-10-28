@@ -17,21 +17,14 @@ function Transition(props:any) {
 }
 
 interface DictionaryEditorProps {
-  open?: boolean | undefined
+  open?: boolean | undefined,
+  closeDictionaryEditor: any
 }
 interface DictionaryEditorState {
   open: boolean
 }
 
 export default class DictionaryEditor extends React.Component<DictionaryEditorProps, DictionaryEditorState> {
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
   render() {
     return (
       <Dialog
@@ -41,13 +34,20 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
         >
           <AppBar>
             <Toolbar>
-              <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
+              <IconButton
+                onClick={this.props.closeDictionaryEditor}
+                color="inherit"
+                aria-label="Close"
+              >
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" >
                 Sound
               </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
+              <Button
+                onClick={this.props.closeDictionaryEditor}
+                color="inherit"
+              >
                 save
               </Button>
             </Toolbar>

@@ -48,20 +48,20 @@ describe('UI', () => {
       const actionArgFixture = 'abc123'
       const state = ui(stateFixture, creators.openDictionaryEditor(actionArgFixture))
       expect(state.editMappings.dictionaryId).toBe(actionArgFixture)
-      expect(state.editMappings.isEditing).toBeTruthy
+      expect(state.editMappings.isEditing).toBeTruthy()
     })
 
     it('Close editor.', () => {
       const stateFixture: UIInt = {
         selectedTabIndex: 0,
         editMappings: {
-          dictionaryId: null,
-          isEditing: false
+          dictionaryId: 'abc1234',
+          isEditing: true
         }
       }
       const state = ui(stateFixture, creators.closeDictionaryEditor())
-      expect(state.editMappings.dictionaryId).toBe(null)
-      expect(state.editMappings.isEditing).toBeFalsy
+      expect(state.editMappings.dictionaryId).toBeNull()
+      expect(state.editMappings.isEditing).toBeFalsy()
     })
   })
 })

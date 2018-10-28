@@ -73,6 +73,8 @@ export const ui = (state: UIInt = INITIAL_STATE, action:any) => {
       return reducers.selectTab(state, action)
     case OPEN_DICTIONARY_MAPPINGS:
       return reducers.openDictionaryEditor(state, action)
+    case CLOSE_DICTIONARY_MAPPINGS:
+      return reducers.closeDictionaryEditor(state, action)
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import DictionaryEditor from '../../components/DictionaryEditor'
-// import { creators } from '../../state/UI'
+import { creators } from '../../state/UI'
 import { StateInt } from '../../state/State.types'
 import { DictionaryInt } from '../../state/Dictionaries/Dictionaries.types'
 
@@ -12,8 +12,8 @@ const mapStateToProps = ({ ui, dictionaries }: StateInt) => ({
   dictionary: selectDictionaryById(ui.editMappings.dictionaryId, dictionaries)
 })
 
-const mapDispatchToProps = () => ({
-  // selectTab: () => dispatch(creators.selectTab(tabIndex))
+const mapDispatchToProps = (dispatch: any) => ({
+  closeDictionaryEditor: () => dispatch(creators.closeDictionaryEditor())
 })
 
 export default connect(
