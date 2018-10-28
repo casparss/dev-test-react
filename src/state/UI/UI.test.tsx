@@ -1,6 +1,7 @@
 import {
   creators,
-  ui
+  ui,
+  CLOSE_DICTIONARY_MAPPINGS
 } from './'
 import { UIInt } from './UI.types'
 
@@ -19,7 +20,7 @@ describe('UI', () => {
     })
     it('Close dicionary editor.', () => {
       const action = creators.closeDictionaryEditor()
-      expect(action.payload).toBe({})
+      expect(action.type).toBe(CLOSE_DICTIONARY_MAPPINGS)
     })
   })
 

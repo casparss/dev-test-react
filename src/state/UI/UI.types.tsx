@@ -36,9 +36,14 @@ export interface OpenEditorCreatorFunc {
   (dictionaryId: string): OpenEditorPayloadInt
 }
 
+export interface CloseEditorCreatorFunc {
+  (): ActionInt
+}
+
 export interface UICreatorsInt {
   selectTab: SelectTabCreatorFunc,
-  openDictionaryEditor: OpenEditorCreatorFunc
+  openDictionaryEditor: OpenEditorCreatorFunc,
+  closeDictionaryEditor: CloseEditorCreatorFunc
 }
 
 /**
@@ -53,7 +58,12 @@ export interface OpenEditorReducerFunc {
   (state: UIInt, action: OpenEditorPayloadInt): UIInt
 }
 
+export interface CloseEditorReducerFunc {
+  (state: UIInt, action: ActionInt): UIInt
+}
+
 export interface UIReducersInt {
   selectTab: SelectTabReducerFunc,
   openDictionaryEditor: OpenEditorReducerFunc,
+  closeDictionaryEditor: CloseEditorReducerFunc
 }

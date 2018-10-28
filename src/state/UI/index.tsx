@@ -28,6 +28,9 @@ export const creators: UICreatorsInt = {
     payload: {
       dictionaryId
     }
+  }),
+  closeDictionaryEditor: () => ({
+    type: CLOSE_DICTIONARY_MAPPINGS
   })
 }
 
@@ -45,6 +48,13 @@ export const reducers: UIReducersInt = {
     editMappings: {
       dictionaryId: action.payload.dictionaryId,
       isEditing: true
+    }
+  }),
+  closeDictionaryEditor: (state, action) => ({
+    ...state,
+    editMappings: {
+      dictionaryId: null,
+      isEditing: false
     }
   })
 }
