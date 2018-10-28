@@ -38,7 +38,6 @@ const MappingSummaryTable = () => (
   </table>
 )
 
-
 interface DictionaryListProps {
   dictionaries: any,
   removeDictionary: any,
@@ -77,6 +76,7 @@ export default class DictionaryList extends React.Component<DictionaryListProps>
     return (
       <div>
         <Button
+          onClick={() => this.props.openEditor(id)}
           variant="fab"
           color="secondary"
           aria-label="Edit"

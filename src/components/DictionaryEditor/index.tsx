@@ -17,7 +17,7 @@ function Transition(props:any) {
 }
 
 interface DictionaryEditorProps {
-  open: boolean
+  open?: boolean | undefined
 }
 interface DictionaryEditorState {
   open: boolean
@@ -25,7 +25,7 @@ interface DictionaryEditorState {
 
 export default class DictionaryEditor extends React.Component<DictionaryEditorProps, DictionaryEditorState> {
   state = {
-    open: this.props.open
+    open: this.props.open || false
   };
 
   handleClickOpen = () => {

@@ -9,6 +9,7 @@ interface DictionaryManagerProps {
   dictionaries: any,
   removeDictionary: any,
   addDictionary: any,
+  openEditor: any
 }
 
 interface DictionaryManagerState {
@@ -20,20 +21,16 @@ export default class DictionaryManager extends React.Component<DictionaryManager
     newDictionaryName: ''
   }
 
-  openEditor = () => {
-
-  }
-
   render() {
     return (
       <div>
         {this.addButton()}
         <DictionaryList
-          openEditor={this.openEditor}
+          openEditor={this.props.openEditor}
           dictionaries={this.props.dictionaries}
           removeDictionary={this.props.removeDictionary}
         />
-        <DictionaryEditor open={true} />
+        <DictionaryEditor />
       </div>
     )
   }

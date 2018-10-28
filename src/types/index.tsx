@@ -1,3 +1,0 @@
-interface actionInt {
-  type: string
-}

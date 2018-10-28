@@ -1,9 +1,9 @@
 import { connect } from "react-redux"
 import { Layout } from '../../components/Layout'
 import { creators } from '../../state/UI'
-// simport { UIInt } from '../../state/UI/UI.types'
+import { StateInt } from '../../state/State.types'
 
-const mapStateToProps = ({ ui }:any) => ({
+const mapStateToProps = ({ ui }: StateInt) => ({
   selectedTabIndex: ui.selectedTabIndex
 })
 

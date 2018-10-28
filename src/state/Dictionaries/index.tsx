@@ -3,7 +3,7 @@ import {
   DictionaryCreatorsInt,
   DictionaryReducersInt,
   DictionaryInt
-} from '../../types/Dictionaries'
+} from './Dictionaries.types'
 
 /**
  * Actions
