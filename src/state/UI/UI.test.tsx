@@ -17,6 +17,10 @@ describe('UI', () => {
       const action = creators.openDictionaryEditor(fixture.id)
       expect(action.payload.dictionaryId).toBe(fixture.id)
     })
+    it('Close dicionary editor.', () => {
+      const action = creators.closeDictionaryEditor()
+      expect(action.payload).toBe({})
+    })
   })
 
   describe('Reducers', () => {
@@ -44,6 +48,19 @@ describe('UI', () => {
       const state = ui(stateFixture, creators.openDictionaryEditor(actionArgFixture))
       expect(state.editMappings.dictionaryId).toBe(actionArgFixture)
       expect(state.editMappings.isEditing).toBeTruthy
+    })
+
+    it('Close editor.', () => {
+      const stateFixture: UIInt = {
+        selectedTabIndex: 0,
+        editMappings: {
+          dictionaryId: null,
+          isEditing: false
+        }
+      }
+      const state = ui(stateFixture, creators.closeDictionaryEditor())
+      expect(state.editMappings.dictionaryId).toBe(null)
+      expect(state.editMappings.isEditing).toBeFalsy
     })
   })
 })

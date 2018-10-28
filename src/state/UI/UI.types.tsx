@@ -1,4 +1,4 @@
-import { ActionInt } from '../../types/State.types'
+import { ActionInt } from '../State.types'
 
 export interface UIInt {
   selectedTabIndex: number,

@@ -24,10 +24,6 @@ interface DictionaryEditorState {
 }
 
 export default class DictionaryEditor extends React.Component<DictionaryEditorProps, DictionaryEditorState> {
-  state = {
-    open: this.props.open || false
-  };
-
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -40,7 +36,7 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
     return (
       <Dialog
           fullScreen
-          open={this.state.open}
+          open={this.props.open || false}
           TransitionComponent={Transition}
         >
           <AppBar>
