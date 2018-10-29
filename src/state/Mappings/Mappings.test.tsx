@@ -34,10 +34,13 @@ describe('UI', () => {
     })
 
     it('edits mapping.', () => {
-      const fixture = {
-        id: 'aasfasfa'
+      const fixture: MappingInt = {
+        id: 'abc123',
+        field: 'Greetings',
+        from: 'Hi',
+        to: 'Hello'
       }
-      const action: EditMappingPayloadInt = creators.editMapping(fixture.id)
+      const action: EditMappingPayloadInt = creators.editMapping(fixture)
       expect(action.payload.id).toBe(fixture.id)
     })
   })

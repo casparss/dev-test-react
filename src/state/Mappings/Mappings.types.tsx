@@ -28,9 +28,7 @@ export interface RemoveMappingPayloadInt extends ActionInt {
 }
 
 export interface EditMappingPayloadInt extends ActionInt {
-  payload: {
-    id: string
-  }
+  payload: MappingInt
 }
 
 /**
@@ -46,7 +44,7 @@ export interface RemoveMappingCreatorFunc {
 }
 
 export interface EditMappingCreatorFunc {
-  (id: string): EditMappingPayloadInt
+  (edited: MappingInt): EditMappingPayloadInt
 }
 
 export interface MappingsCreatorsInt {
