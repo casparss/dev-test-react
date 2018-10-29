@@ -10,7 +10,8 @@ interface DictionaryManagerProps {
   dictionaries: any,
   removeDictionary: any,
   addDictionary: any,
-  openEditor: any
+  openEditor: any,
+  doesNameExist: any
 }
 
 interface DictionaryManagerState {
@@ -59,7 +60,7 @@ export default class DictionaryManager extends React.Component<DictionaryManager
           variant="fab"
           color="primary"
           aria-label="Add"
-          disabled={doesNameExist}
+          disabled={this.isFieldEmpty() || doesNameExist}
         >
           <AddIcon />
         </Button>
@@ -81,5 +82,9 @@ export default class DictionaryManager extends React.Component<DictionaryManager
     const doesNameExist = this.props.dictionaries
       .find(({ name }: { name: string }) => name === this.state.newDictionaryName)
     return doesNameExist ? true : false
+  }
+
+  isFieldEmpty() {
+    return this.state.newDictionaryName === ''
   }
 }

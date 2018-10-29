@@ -1,11 +1,9 @@
 import { ActionInt } from '../State.types'
+import { MappingInt } from '../Mappings/Mappings.types'
 
-export interface MappingInt {
-  id: string,
-  field: number,
-  from: string,
-  to: string
-}
+/**
+ * Models
+ */
 
 export interface DictionaryInt {
   id: string,
