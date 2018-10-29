@@ -1,39 +1,112 @@
-// import { MappingInt } from './Mappings.types'
+import {
+  CreateMappingPayloadInt,
+  RemoveMappingPayloadInt,
+  EditMappingPayloadInt,
+  MappingInt
+} from './Mappings.types'
+import {
+  creators,
+  mappings
+} from './'
 
 describe('UI', () => {
   describe('Creators', () => {
     it('creates mapping.', () => {
-      /*const action = creators.selectTab(1)
-      expect(action.payload.tabIndex).toBe(1)*/
+      const fixture = {
+        field: '',
+        from: '',
+        to: '',
+        isNew: true
+      }
+      const action: CreateMappingPayloadInt = creators.createMapping()
+      expect(action.payload.field).toBe(fixture.field)
+      expect(action.payload.from).toBe(fixture.from)
+      expect(action.payload.to).toBe(fixture.to)
+      expect(action.payload.isNew).toBe(fixture.isNew)
     })
 
     it('removes mapping.', () => {
-
+      const fixture = {
+        id: 'poiuyt123'
+      }
+      const action: RemoveMappingPayloadInt = creators.removeMapping(fixture.id)
+      expect(action.payload.id).toBe(fixture.id)
     })
 
     it('edits mapping.', () => {
-
+      const fixture = {
+        id: 'aasfasfa'
+      }
+      const action: EditMappingPayloadInt = creators.editMapping(fixture.id)
+      expect(action.payload.id).toBe(fixture.id)
     })
   })
   describe('Reducers', () => {
     it('creates mapping.', () => {
-      /*const stateFixture: UIInt = {
-        selectedTabIndex: 0,
-        editMappings: {
-          dictionaryId: null,
-          isEditing: false
-        }
-      }
-      const state = ui(stateFixture, creators.selectTab(2))
-      expect(state.selectedTabIndex).toBe(2)*/
+      const stateFixture: MappingInt[] = [
+        {
+          id: 'abc123',
+          field: 'Pants',
+          from: 'Briefs',
+          to: 'Boxers',
+        },
+        {
+          id: 'def456',
+          field: 'Balls',
+          from: 'Tennis',
+          to: 'Football',
+        },
+      ]
+      const state = mappings(stateFixture, creators.createMapping())
+      const newMapping = state.find(({ isNew }: { isNew: boolean }) => isNew)
+      expect(newMapping.field).toBe('')
+      expect(newMapping.from).toBe('')
+      expect(newMapping.to).toBe('')
     })
 
     it('removes mapping.', () => {
-
+      const stateFixture: MappingInt[] = [
+        {
+          id: 'abc123',
+          field: 'Pants',
+          from: 'Briefs',
+          to: 'Boxers',
+        },
+        {
+          id: 'def456',
+          field: 'Balls',
+          from: 'Tennis',
+          to: 'Football',
+        }
+      ]
+      const state = mappings(stateFixture, creators.removeMapping(stateFixture[0].id))
+      expect(state.length).toEqual(1)
     })
 
     it('edits mapping.', () => {
-
+      const editFixture: MappingInt = {
+        id: 'abc123',
+        field: 'Greetings',
+        from: 'Hi',
+        to: 'Hello'
+      }
+      const stateFixture: MappingInt[] = [
+        {
+          id: 'abc123',
+          field: 'Pants',
+          from: 'Briefs',
+          to: 'Boxers'
+        },
+        {
+          id: 'def456',
+          field: 'Balls',
+          from: 'Tennis',
+          to: 'Football',
+        }
+      ]
+      const state = mappings(stateFixture, creators.editMapping(editFixture))
+      const editMapping = state.find(({ id }: { id: string }) => id === editFixture.id)
+      expect(editMapping).toEqual(editFixture)
     })
   })
 })
