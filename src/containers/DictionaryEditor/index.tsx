@@ -2,14 +2,14 @@ import { connect } from "react-redux"
 import DictionaryEditor from '../../components/DictionaryEditor'
 import { creators } from '../../state/UI'
 import { StateInt } from '../../state/State.types'
-import { DictionaryInt } from '../../state/Dictionaries/Dictionaries.types'
+import { selectDictionaryById } from '../../selectors'
 
-const selectDictionaryById = (dictionaryId: string | null, dictionaries: DictionaryInt[]) =>
-  dictionaries.find(({ id }: { id: string }) => id === dictionaryId)
-
-const mapStateToProps = ({ ui, dictionaries }: StateInt) => ({
-  open: ui.editMappings.isEditing,
-  dictionary: selectDictionaryById(ui.editMappings.dictionaryId, dictionaries)
+const mapStateToProps = (state: StateInt) => ({
+  open: state.ui.editMappings.isEditing,
+  dictionary: selectDictionaryById(
+    state,
+    state.ui.editMappings.dictionaryId || ''
+  )
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
