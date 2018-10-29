@@ -19,16 +19,30 @@ export const REMOVE_MAPPING_ID: string = 'REMOVE_MAPPING_ID'
  */
 
 export const creators: DictionaryCreatorsInt = {
-  addDictionary: (name = 'New dictionary') => ({
+  addDictionary: name => ({
     type: ADD_DICTIONARY,
     payload: {
       name
     }
   }),
-  removeDictionary: (id) => ({
+  removeDictionary: id => ({
     type: REMOVE_DICTIONARY,
     payload: {
       id
+    }
+  }),
+  addMapping: (dictionaryId, mappingId) => ({
+    type: ADD_MAPPING_ID,
+    payload: {
+      dictionaryId,
+      mappingId
+    }
+  }),
+  removeMapping: (dictionaryId, mappingId) => ({
+    type: REMOVE_MAPPING_ID,
+    payload: {
+      dictionaryId,
+      mappingId
     }
   })
 }
@@ -47,7 +61,9 @@ const reducers: DictionaryReducersInt = {
     return [...state, newDictionary]
   },
   removeDictionary: (state, action) =>
-    state.filter(dictionary => dictionary.id !== action.payload.id )
+    state.filter(dictionary => dictionary.id !== action.payload.id ),
+  addMapping: () => {},
+  removeMapping: () => {}
 }
 
 export const dictionaries = (state: DictionaryInt[] = [], action: any) => {
@@ -56,6 +72,10 @@ export const dictionaries = (state: DictionaryInt[] = [], action: any) => {
       return reducers.addDictionary(state, action)
     case REMOVE_DICTIONARY:
       return reducers.removeDictionary(state, action)
+    case ADD_MAPPING_ID:
+      return reducers.addMapping(state, action)
+    case REMOVE_MAPPING_ID:
+      return reducers.removeMapping(state, action)
     default:
       return state
   }
