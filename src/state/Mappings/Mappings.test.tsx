@@ -61,7 +61,7 @@ describe('UI', () => {
         },
       ]
       const state = mappings(stateFixture, creators.createMapping())
-      const newMapping = state.find(({ isNew }: { isNew: boolean }) => isNew)
+      const newMapping: any = state.find(({ isNew }) => isNew === true)
       expect(newMapping.field).toBe('')
       expect(newMapping.from).toBe('')
       expect(newMapping.to).toBe('')

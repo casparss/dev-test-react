@@ -74,12 +74,12 @@ const INITIAL_STATE: MappingInt[] = []
 export const mappings = (state: MappingInt[] = INITIAL_STATE, action: any) => {
   switch(action.type) {
     case CREATE_MAPPING:
-      reducers.createMapping(state, action)
+      return reducers.createMapping(state, action)
     case REMOVE_MAPPING:
-      reducers.removeMapping(state, action)
+      return reducers.removeMapping(state, action)
     case EDIT_MAPPING:
-      reducers.editMapping(state, action)
+      return reducers.editMapping(state, action)
     default:
-      state
+      return state
   }
 }
