@@ -26,6 +26,7 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
   render() {
     return (
       <Dialog
+        className="Dictionary-editor"
         fullScreen
         open={this.props.open || false}
         TransitionComponent={Transition}
@@ -50,7 +51,9 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
             </Button>
           </Toolbar>
         </AppBar>
-        <MappingTable />
+        <div className="Container">
+          <MappingTable className="Mapping-table" />
+        </div>
       </Dialog>
     )
   }

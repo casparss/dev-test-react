@@ -5,12 +5,10 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-
-class Test extends React.Component {
-  render() {
-    return (<h1>Test Component</h1>)
-  }
-}
+import Button from '@material-ui/core/Button'
+// import TextField from '@material-ui/core/TextField'
+import Edit from '@material-ui/icons/Edit';
+import './MappingTable.style.scss'
 
 let id = 0;
 function createData(name:string, calories: number, fat: number, carbs: number, protein: number) {
@@ -18,43 +16,64 @@ function createData(name:string, calories: number, fat: number, carbs: number, p
   return { id, name, calories, fat, carbs, protein };
 }
 
-
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 function SimpleTable(props: any) {
   return (
-    <Paper>
+    <Paper className="Mapping-table">
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
+            <TableCell>Transform Field</TableCell>
+            <TableCell numeric>From</TableCell>
+            <TableCell numeric>To</TableCell>
+            <TableCell numeric></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell numeric>{row.calories}</TableCell>
-                <TableCell numeric>{row.fat}</TableCell>
-                <TableCell numeric>{row.carbs}</TableCell>
-                <TableCell numeric><Test /></TableCell>
-              </TableRow>
-            );
-          })}
+          <TableRow>
+            <TableCell numeric>Something</TableCell>
+            <TableCell numeric>Hello</TableCell>
+            <TableCell numeric>Pants</TableCell>
+            <TableCell>
+              <Button
+
+                variant="fab"
+                color="secondary"
+                aria-label="Edit"
+              >
+                <Edit />
+              </Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell numeric>Something</TableCell>
+            <TableCell numeric>Hello</TableCell>
+            <TableCell numeric>Pants</TableCell>
+            <TableCell>
+              <Button
+
+                variant="fab"
+                color="secondary"
+                aria-label="Edit"
+              >
+                <Edit />
+              </Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell numeric>Something</TableCell>
+            <TableCell numeric>Hello</TableCell>
+            <TableCell numeric>Pants</TableCell>
+            <TableCell>
+              <Button
+
+                variant="fab"
+                color="secondary"
+                aria-label="Edit"
+              >
+                <Edit />
+              </Button>
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </Paper>
