@@ -7,19 +7,22 @@ import { StateInt } from '../../state/State.types'
 import { selectDictionaryById } from '../../selectors'
 import * as uniqid from 'uniqid'
 
-const mapStateToProps = (state: StateInt) => ({
-  open: state.ui.editMappings.isEditing,
-  dictionary: selectDictionaryById(
-    state,
-    state.ui.editMappings.dictionaryId || ''
-  )
-})
+const mapStateToProps = (state: StateInt) => {
+  console.log('state',state)
+  return {
+    open: state.ui.editMappings.isEditing,
+    dictionary: selectDictionaryById(
+      state,
+      state.ui.editMappings.dictionaryId || ''
+    )
+  }
+}
 
 const mapDispatchToProps = (dispatch: any) => ({
   closeDictionaryEditor: () => dispatch(uiCreators.closeDictionaryEditor()),
-  createMapping: (dictionaryId: string) => {
+  createMapping: (field: string, dictionaryId: string) => {
     const mappingId = uniqid()
-    dispatch(mappingsCreators.createMapping(mappingId))
+    dispatch(mappingsCreators.createMapping(field, mappingId))
     dispatch(dictionariesCreators.addMapping(
       dictionaryId,
       mappingId
@@ -44,7 +47,7 @@ const mergeProps = (propsFromState: any, propsFromDispatch: any, ownProps: any) 
     ...ownProps,
     ...propsFromDispatch,
     actions: {
-      createMapping: () => propsFromDispatch.createMapping(dictionaryId),
+      createMapping: (field: string) => propsFromDispatch.createMapping(field, dictionaryId),
       removeMapping: (mappingId: string) => {
         propsFromDispatch.removeMapping(dictionaryId, mappingId)
       }

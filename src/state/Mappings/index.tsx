@@ -18,11 +18,11 @@ export const EDIT_MAPPING: string = 'EDIT_MAPPING'
 */
 
 export const creators: MappingsCreatorsInt = {
-  createMapping: (id?: string) => ({
+  createMapping: (field: string, id?: string) => ({
     type: CREATE_MAPPING,
     payload: {
       id: id ? id : uniqid(),
-      field: '',
+      field,
       from: '',
       to: '',
       isNew: true

@@ -13,12 +13,12 @@ describe('Mappings', () => {
   describe('Creators', () => {
     it('creates mapping.', () => {
       const fixture = {
-        field: '',
+        field: 'hey',
         from: '',
         to: '',
         isNew: true
       }
-      const action: CreateMappingPayloadInt = creators.createMapping()
+      const action: CreateMappingPayloadInt = creators.createMapping(fixture.field)
       expect(action.payload.field).toBe(fixture.field)
       expect(action.payload.from).toBe(fixture.from)
       expect(action.payload.to).toBe(fixture.to)
@@ -60,9 +60,9 @@ describe('Mappings', () => {
           to: 'Football',
         },
       ]
-      const state = mappings(stateFixture, creators.createMapping())
+      const state = mappings(stateFixture, creators.createMapping('hello'))
       const newMapping: any = state.find(({ isNew }) => isNew === true)
-      expect(newMapping.field).toBe('')
+      expect(newMapping.field).toBe('hello')
       expect(newMapping.from).toBe('')
       expect(newMapping.to).toBe('')
     })

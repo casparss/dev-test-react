@@ -34,7 +34,7 @@ export default class AddMapping extends React.Component<AddMappingInt> {
   }
 
   createMapping() {
-    this.props.actions.createMapping()
+    this.props.actions.createMapping(this.state.value)
     this.reset()
   }
 
