@@ -17,7 +17,8 @@ function Transition(props:any) {
 interface DictionaryEditorProps {
   open?: boolean | undefined,
   closeDictionaryEditor: any,
-  dictionary: any
+  dictionary: any,
+  actions: any
 }
 
 interface DictionaryEditorState {
@@ -54,7 +55,10 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
           </Toolbar>
         </AppBar>
         <div className="Container">
-          <MappingTable dictionary={this.props.dictionary} />
+          <MappingTable
+            actions={this.props.actions}
+            dictionary={this.props.dictionary}
+          />
         </div>
       </Dialog>
     )

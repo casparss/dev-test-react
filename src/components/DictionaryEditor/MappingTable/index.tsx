@@ -6,12 +6,13 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-// import TextField from '@material-ui/core/TextField'
 import Edit from '@material-ui/icons/Edit'
 import './MappingTable.style.scss'
+import AddMapping from './AddMapping.component'
 
 interface MappingTableProps {
-  dictionary: any
+  dictionary: any,
+  actions: any
 }
 
 export default class MappingTable extends React.Component<MappingTableProps> {
@@ -30,6 +31,7 @@ export default class MappingTable extends React.Component<MappingTableProps> {
             {this.body}
           </TableBody>
         </Table>
+        <AddMapping actions={this.props.actions} />
       </Paper>
     )
   }
@@ -49,9 +51,9 @@ export default class MappingTable extends React.Component<MappingTableProps> {
     return this.props.dictionary.mappings.map(this.row.bind(this))
   }
 
-  row({ id, field, from, to }: { id: string, field: any, from: any, to: any}) {
+  row({ id, field, from, to }: { id: string, field: any, from: any, to: any}, i: string) {
     return (
-      <TableRow>
+      <TableRow key={i}>
         <TableCell>{field}</TableCell>
         <TableCell>{from}</TableCell>
         <TableCell>{to}</TableCell>

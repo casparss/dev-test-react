@@ -6,7 +6,8 @@ export const dictionaryById = (state: any, dictionaryId: string) =>
 
 export const populateMappings = (dictionary: DictionaryInt, mappings: MappingInt[]) => ({
   ...dictionary,
-  mappings: dictionary.mappings.map(id => mappings[id])
+  mappings: dictionary.mappings
+    .map((mappingId: string) => mappings.find(({ id }) => id === mappingId))
 })
 
 export const selectDictionaryById = (state: any, dictionaryId: string) => {

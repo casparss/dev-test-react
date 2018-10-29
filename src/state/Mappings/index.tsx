@@ -18,10 +18,10 @@ export const EDIT_MAPPING: string = 'EDIT_MAPPING'
 */
 
 export const creators: MappingsCreatorsInt = {
-  createMapping: () => ({
+  createMapping: (id?: string) => ({
     type: CREATE_MAPPING,
     payload: {
-      id: uniqid(),
+      id: id ? id : uniqid(),
       field: '',
       from: '',
       to: '',
@@ -47,14 +47,7 @@ export const creators: MappingsCreatorsInt = {
  */
 
 const reducers: MappingsReducerInt = {
-  createMapping: (state, action) => {
-    const newMapping: MappingInt = {
-      ...action.payload,
-      id: uniqid(),
-      isNew: true
-    }
-    return [...state, newMapping]
-  },
+  createMapping: (state, action) => [...state, action.payload],
   removeMapping: (state, action) => {
     return state.filter(({ id }) => id !== action.payload.id)
   },
