@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import './DictionaryEditor.style.scss'
 
 function Transition(props:any) {
   return <Slide direction="up" {...props} />;
@@ -28,40 +29,40 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
   render() {
     return (
       <Dialog
-          fullScreen
-          open={this.props.open || false}
-          TransitionComponent={Transition}
-        >
-          <AppBar>
-            <Toolbar>
-              <IconButton
-                onClick={this.props.closeDictionaryEditor}
-                color="inherit"
-                aria-label="Close"
-              >
-                <CloseIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" >
-                Sound
-              </Typography>
-              <Button
-                onClick={this.props.closeDictionaryEditor}
-                color="inherit"
-              >
-                save
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <List>
-            <ListItem button>
-              <ListItemText primary="Phone ringtone" secondary="Titania" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-            </ListItem>
-          </List>
-        </Dialog>
+        fullScreen
+        open={this.props.open || false}
+        TransitionComponent={Transition}
+      >
+        <AppBar className="Editor-bar">
+          <Toolbar>
+            <IconButton
+              onClick={this.props.closeDictionaryEditor}
+              color="inherit"
+              aria-label="Close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" >
+              Dictionary Editor
+            </Typography>
+            <Button
+              onClick={this.props.closeDictionaryEditor}
+              color="inherit"
+            >
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItem button>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+          </ListItem>
+        </List>
+      </Dialog>
     )
   }
 }

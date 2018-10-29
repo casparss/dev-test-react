@@ -4,6 +4,7 @@ import DictionaryEditor from '../../containers/DictionaryEditor'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import TextField from '@material-ui/core/TextField'
+import './DictionaryManager.style.scss'
 
 interface DictionaryManagerProps {
   dictionaries: any,
@@ -49,18 +50,22 @@ export default class DictionaryManager extends React.Component<DictionaryManager
   }
 
   addButton() {
+    const doesNameExist = this.doesNameExist()
     return (
-      <div>
+      <div className="Edit-bar">
         <Button
           className="Add-button"
           onClick={() => this.addDictionary()}
           variant="fab"
           color="primary"
           aria-label="Add"
+          disabled={doesNameExist}
         >
           <AddIcon />
         </Button>
         <TextField
+          error={doesNameExist}
+          helperText={doesNameExist ? 'Dictionary name already exists.' : ''}
           className="Text-input"
           label="Name"
           value={this.state.newDictionaryName}
@@ -70,5 +75,11 @@ export default class DictionaryManager extends React.Component<DictionaryManager
         />
       </div>
     )
+  }
+
+  doesNameExist() {
+    const doesNameExist = this.props.dictionaries
+      .find(({ name }: { name: string }) => name === this.state.newDictionaryName)
+    return doesNameExist ? true : false
   }
 }

@@ -51,7 +51,7 @@ export default class ConfirmDialog extends React.Component<ConfirmDialogProps> {
           </DialogContent>
           <DialogActions>
             <Button onClick={this.onClose} color="primary">
-              Close
+              Cancel
             </Button>
             <Button onClick={this.onConfirm} color="secondary" autoFocus>
               Confirm

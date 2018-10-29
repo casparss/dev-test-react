@@ -11,7 +11,7 @@ const mapStateToProps = ({ dictionaries }: StateInt) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   addDictionary: (name: string) => dispatch(creators.addDictionary(name)),
   removeDictionary: (id: string) => dispatch(creators.removeDictionary(id)),
-  openEditor: (id: string) => dispatch(uiCreators.openDictionaryEditor(id))
+  openEditor: (id: string) => dispatch(uiCreators.openDictionaryEditor(id)),
 })
 
 export default connect(
