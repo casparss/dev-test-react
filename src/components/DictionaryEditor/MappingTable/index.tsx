@@ -7,72 +7,69 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 // import TextField from '@material-ui/core/TextField'
-import Edit from '@material-ui/icons/Edit';
+import Edit from '@material-ui/icons/Edit'
 import './MappingTable.style.scss'
 
-function SimpleTable() {
-  return (
-    <Paper className="Mapping-table">
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Transform Field</TableCell>
-            <TableCell numeric>From</TableCell>
-            <TableCell numeric>To</TableCell>
-            <TableCell numeric></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell numeric>Something</TableCell>
-            <TableCell numeric>Hello</TableCell>
-            <TableCell numeric>Pants</TableCell>
-            <TableCell>
-              <Button
-
-                variant="fab"
-                color="secondary"
-                aria-label="Edit"
-              >
-                <Edit />
-              </Button>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell numeric>Something</TableCell>
-            <TableCell numeric>Hello</TableCell>
-            <TableCell numeric>Pants</TableCell>
-            <TableCell>
-              <Button
-
-                variant="fab"
-                color="secondary"
-                aria-label="Edit"
-              >
-                <Edit />
-              </Button>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell numeric>Something</TableCell>
-            <TableCell numeric>Hello</TableCell>
-            <TableCell numeric>Pants</TableCell>
-            <TableCell>
-              <Button
-
-                variant="fab"
-                color="secondary"
-                aria-label="Edit"
-              >
-                <Edit />
-              </Button>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+interface MappingTableProps {
+  dictionary: any
 }
 
+export default class MappingTable extends React.Component<MappingTableProps> {
+  render() {
+    return this.props.dictionary ? this.main : <div></div>
+  }
 
-export default SimpleTable
+  get main() {
+    return (
+      <Paper className="Mapping-table">
+        <Table>
+          <TableHead>
+            {this.head}
+          </TableHead>
+          <TableBody>
+            {this.body}
+          </TableBody>
+        </Table>
+      </Paper>
+    )
+  }
+
+  get head() {
+    return (
+      <TableRow>
+        <TableCell>Transform Field</TableCell>
+        <TableCell numeric>From</TableCell>
+        <TableCell numeric>To</TableCell>
+        <TableCell numeric></TableCell>
+      </TableRow>
+    )
+  }
+
+  get body() {
+    return this.props.dictionary.mappings.map(this.row.bind(this))
+  }
+
+  row({ id, field, from, to }: { id: string, field: any, from: any, to: any}) {
+    return (
+      <TableRow>
+        <TableCell>{field}</TableCell>
+        <TableCell>{from}</TableCell>
+        <TableCell>{to}</TableCell>
+        <TableCell>
+          <Button
+            onClick={() => this.editRow(id)}
+            variant="fab"
+            color="secondary"
+            aria-label="Edit"
+          >
+            <Edit />
+          </Button>
+        </TableCell>
+      </TableRow>
+    )
+  }
+
+  editRow(id: string) {
+    console.log(id)
+  }
+}
