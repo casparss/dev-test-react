@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Edit from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import ConfirmDialog from '../../ConfirmDialog'
 
 const MappingSummaryTable = () => (
   <table className='Mapping-summary'>
@@ -44,17 +45,53 @@ interface DictionaryListProps {
   openEditor: any
 }
 
-export default class DictionaryList extends React.Component<DictionaryListProps>  {
+interface DictionaryListState {
+  deleteDictionaryId: string,
+  openDialog: boolean
+}
+
+export default class DictionaryList extends React.Component<DictionaryListProps, DictionaryListState>  {
+  state = {
+    deleteDictionaryId: '',
+    openDialog: false
+  }
+
+  removeDictionary(deleteDictionaryId: string) {
+    this.setState({
+      deleteDictionaryId,
+      openDialog: true
+    })
+  }
+
+  onDialogConfirm() {
+    this.props.removeDictionary(this.state.deleteDictionaryId)
+    this.onDialogClose()
+  }
+
+  onDialogClose() {
+    this.setState({
+      deleteDictionaryId: '',
+      openDialog: false
+    })
+  }
+
   render() {
     const { dictionaries } = this.props
     return (
       <div>
         {dictionaries.map(this.item.bind(this))}
+        <ConfirmDialog
+          open={this.state.openDialog}
+          title="Delete dictionary?"
+          message={`Are you sure you want to delete dictionary?`}
+          onConfirm={() => this.onDialogConfirm()}
+          onClose={() => this.onDialogClose()}
+        />
       </div>
     )
   }
 
-  item({ name, id }: { name: string, id: number}, i: number) {
+  item({ name, id }: { name: string, id: string}, i: number) {
     return (
       <ExpansionPanel className='Dictionary-panel' key={i}>
         <ExpansionPanelSummary>
@@ -72,7 +109,7 @@ export default class DictionaryList extends React.Component<DictionaryListProps>
     )
   }
 
-  buttons(id: number) {
+  buttons(id: string) {
     return (
       <div>
         <Button
@@ -85,7 +122,7 @@ export default class DictionaryList extends React.Component<DictionaryListProps>
         </Button>
         <Button
           className='Remove-button'
-          onClick={() => this.props.removeDictionary(id)}
+          onClick={() => this.removeDictionary(id)}
           variant="fab"
         >
           <DeleteIcon />

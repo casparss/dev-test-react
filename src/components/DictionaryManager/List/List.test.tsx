@@ -31,7 +31,6 @@ describe('DictionaryManager', () => {
       .find('.Dictionary-panel .Remove-button')
       .simulate('click')
 
-    expect(mock.removeDictionary).toHaveBeenCalledTimes(1)
-    expect(mock.removeDictionary).toHaveBeenCalledWith(fixture.id)
+    expect(wrapper.state('deleteDictionaryId')).toBe(fixture.id)
   });
 })
