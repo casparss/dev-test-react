@@ -10,13 +10,7 @@ import Button from '@material-ui/core/Button'
 import Edit from '@material-ui/icons/Edit';
 import './MappingTable.style.scss'
 
-let id = 0;
-function createData(name:string, calories: number, fat: number, carbs: number, protein: number) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
-
-function SimpleTable(props: any) {
+function SimpleTable() {
   return (
     <Paper className="Mapping-table">
       <Table>
