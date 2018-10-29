@@ -29,13 +29,13 @@ export const creators: MappingsCreatorsInt = {
     }
   }),
   removeMapping: id => ({
-    type: CREATE_MAPPING,
+    type: REMOVE_MAPPING,
     payload: {
       id
     }
   }),
   editMapping: edited => ({
-    type: CREATE_MAPPING,
+    type: EDIT_MAPPING,
     payload: {
       ...edited
     }

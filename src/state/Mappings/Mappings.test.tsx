@@ -9,7 +9,7 @@ import {
   mappings
 } from './'
 
-describe('UI', () => {
+describe('Mappings', () => {
   describe('Creators', () => {
     it('creates mapping.', () => {
       const fixture = {
