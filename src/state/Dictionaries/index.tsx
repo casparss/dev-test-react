@@ -50,7 +50,7 @@ const reducers: DictionaryReducersInt = {
     state.filter(dictionary => dictionary.id !== action.payload.id )
 }
 
-export const dictionaries = (state:any = [], action:any) => {
+export const dictionaries = (state: DictionaryInt[] = [], action: any) => {
   switch(action.type) {
     case ADD_DICTIONARY:
       return reducers.addDictionary(state, action)

@@ -1,46 +1,85 @@
 import {
-  CreateMappingPayloadInt,
+  AddMappingPayloadInt,
   RemoveMappingPayloadInt,
-  EditMappingPayloadInt,
-  MappingInt
+  DictionaryInt
 } from './Dictionaries.types'
 import {
   creators,
-  mappings
+  dictionaries
 } from './'
 
 describe('Dictionaries', () => {
   describe('Creators', () => {
-    it('adds mapping ID to dictionary.', () => {
-      const fixture = {
+    it('adds mapping ID to add mapping payload.', () => {
+      const [dictionaryId, mappingId] = ['poiu1234', 'wdawdawdw']
 
-      }
-      const action: EditMappingPayloadInt = creators.addMapping(fixture)
-      expect(action.payload.id).toBe(fixture.id)
+      const action: AddMappingPayloadInt = creators.addMapping(dictionaryId, mappingId)
+      expect(action.payload.dictionaryId).toBe(dictionaryId)
+      expect(action.payload.mappingId).toBe(mappingId)
+    })
+
+    it('adds ID to remove mapping payload.', () => {
+      const [dictionaryId, mappingId] = ['poiu1234', 'wdawdawdw']
+
+      const action: RemoveMappingPayloadInt = creators.removeMapping(dictionaryId, mappingId)
+      expect(action.payload.dictionaryId).toBe(dictionaryId)
+      expect(action.payload.mappingId).toBe(mappingId)
     })
   })
   describe('Reducers', () => {
     it('adds mapping ID to dictionary.', () => {
-      /*const stateFixture: MappingInt[] = [
+      const [dictionaryId, mappingId] = ['9876', 'wdawdawdw']
+
+      const stateFixture: DictionaryInt[] = [
         {
-          id: 'abc123',
-          field: 'Pants',
-          from: 'Briefs',
-          to: 'Boxers',
+          id: '9876',
+          name: 'Something',
+          mappings: [
+            'abc123',
+            'ref456',
+            'ref987'
+          ]
         },
         {
-          id: 'def456',
-          field: 'Balls',
-          from: 'Tennis',
-          to: 'Football',
-        },
+          id: '5477',
+          name: 'People',
+          mappings: [
+            'abcdd3',
+            'refaa6',
+            'refw7'
+          ]
+        }
       ]
-      const state = mappings(stateFixture, creators.createMapping())
-      const newMapping: any = state.find(({ isNew }) => isNew === true)
-      expect(newMapping.field).toBe('')
-      expect(newMapping.from).toBe('')
-      expect(newMapping.to).toBe('')*/
-      throw new Error('test fail')
+      const state = dictionaries(stateFixture, creators.addMapping(dictionaryId, mappingId))
+      const dictionary: any = state.find(({ id }) => id === dictionaryId)
+      expect(dictionary.mappings).toContain(mappingId)
+    })
+    it('remove mapping ID to dictionary.', () => {
+      const [dictionaryId, mappingId] = ['5477', 'refw7']
+
+      const stateFixture: DictionaryInt[] = [
+        {
+          id: '9876',
+          name: 'Something',
+          mappings: [
+            'abc123',
+            'ref456',
+            'ref987'
+          ]
+        },
+        {
+          id: '5477',
+          name: 'People',
+          mappings: [
+            'abcdd3',
+            'refaa6',
+            'refw7'
+          ]
+        }
+      ]
+      const state = dictionaries(stateFixture, creators.removeMapping(dictionaryId, mappingId))
+      const dictionary: any = state.find(({ id }) => id === dictionaryId)
+      expect(dictionary.mappings).not.toContain(mappingId)
     })
   })
 })

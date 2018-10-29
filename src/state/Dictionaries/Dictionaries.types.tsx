@@ -31,13 +31,15 @@ export interface RemoveDictionaryPayloadInt extends ActionInt {
 
 export interface AddMappingPayloadInt extends ActionInt {
   payload: {
-    id: string
+    dictionaryId: string,
+    mappingId: string
   }
 }
 
 export interface RemoveMappingPayloadInt extends ActionInt {
   payload: {
-    id: string
+    dictionaryId: string,
+    mappingId: string
   }
 }
 
@@ -54,11 +56,11 @@ export interface RemoveDictionaryCreatorFunc {
 }
 
 export interface AddMappingCreatorFunc {
-  (id: string): AddMappingPayloadInt
+  (dictionaryId: string, mappingId: string): AddMappingPayloadInt
 }
 
 export interface RemoveMappingCreatorFunc {
-  (id: string): RemoveMappingPayloadInt
+  (dictionaryId: string, mappingId: string): RemoveMappingPayloadInt
 }
 
 export interface DictionaryCreatorsInt {
