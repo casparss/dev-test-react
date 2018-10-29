@@ -11,6 +11,8 @@ import {
 
 export const ADD_DICTIONARY: string = 'ADD_DICTIONARY'
 export const REMOVE_DICTIONARY: string = 'REMOVE_DICTIONARY'
+export const ADD_MAPPING_ID: string = 'ADD_MAPPING_ID'
+export const REMOVE_MAPPING_ID: string = 'REMOVE_MAPPING_ID'
 
 /**
  * Creators

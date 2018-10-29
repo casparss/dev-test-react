@@ -5,10 +5,12 @@ import { MappingInt } from '../Mappings/Mappings.types'
  * Models
  */
 
+export type MappingID = string
+
 export interface DictionaryInt {
   id: string,
   name: string,
-  mappings: MappingInt[]
+  mappings: MappingID[]
 }
 
 /**
@@ -27,6 +29,18 @@ export interface RemoveDictionaryPayloadInt extends ActionInt {
   }
 }
 
+export interface AddMappingPayloadInt extends ActionInt {
+  payload: {
+    id: string
+  }
+}
+
+export interface RemoveMappingPayloadInt extends ActionInt {
+  payload: {
+    id: string
+  }
+}
+
 /**
  * Creators
  */
@@ -39,9 +53,19 @@ export interface RemoveDictionaryCreatorFunc {
   (id: string): RemoveDictionaryPayloadInt
 }
 
+export interface AddMappingCreatorFunc {
+  (id: string): AddMappingPayloadInt
+}
+
+export interface RemoveMappingCreatorFunc {
+  (id: string): RemoveMappingPayloadInt
+}
+
 export interface DictionaryCreatorsInt {
   addDictionary: AddDictionaryCreatorFunc,
-  removeDictionary: RemoveDictionaryCreatorFunc
+  removeDictionary: RemoveDictionaryCreatorFunc,
+  addMapping: AddMappingCreatorFunc,
+  removeMapping: RemoveMappingCreatorFunc
 }
 
 /**
@@ -56,7 +80,17 @@ interface RemoveDictionaryReducerFunc {
   (state: DictionaryInt[], action: RemoveDictionaryPayloadInt): DictionaryInt[]
 }
 
+interface AddMappingReducerFunc {
+  (state: DictionaryInt[], action: AddMappingPayloadInt): DictionaryInt[]
+}
+
+interface RemoveMappingReducerFunc {
+  (state: DictionaryInt[], action: RemoveMappingPayloadInt): DictionaryInt[]
+}
+
 export interface DictionaryReducersInt {
   addDictionary: AddDictionaryReducerFunc,
-  removeDictionary: RemoveDictionaryReducerFunc
+  removeDictionary: RemoveDictionaryReducerFunc,
+  addMapping: AddMappingReducerFunc,
+  removeMapping: RemoveMappingReducerFunc
 }

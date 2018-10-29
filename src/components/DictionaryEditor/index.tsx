@@ -52,7 +52,7 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
           </Toolbar>
         </AppBar>
         <div className="Container">
-          <MappingTable className="Mapping-table" />
+          <MappingTable />
         </div>
       </Dialog>
     )
