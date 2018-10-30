@@ -10,6 +10,10 @@ export const populateMappings = (dictionary: DictionaryInt, mappings: MappingInt
     .map((mappingId: string) => mappings.find(({ id }) => id === mappingId))
 })
 
+export const populateDictionariesMappings = (dictionaries: DictionaryInt[], mappings: MappingInt[]) => {
+  return dictionaries.map(dictionary => populateMappings(dictionary, mappings))
+}
+
 export const selectDictionaryById = (state: any, dictionaryId: string) => {
   const dictionary = dictionaryById(state, dictionaryId)
   return dictionary ?

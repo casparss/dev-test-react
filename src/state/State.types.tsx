@@ -1,3 +1,4 @@
+import { MappingsInt } from './Mappings/Mappings.types'
 import { DictionaryInt } from './Dictionaries/Dictionaries.types'
 import { UIInt } from './UI/UI.types'
 
@@ -7,5 +8,6 @@ export interface ActionInt {
 
 export interface StateInt {
   dictionaries: DictionaryInt[],
-  ui: UIInt
+  ui: UIInt,
+  mappings: MappingsInt
 }

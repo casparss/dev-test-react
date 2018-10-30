@@ -1,3 +1,13 @@
 .Mapping-summary {
   width: 100%;
 }
+
+.Mapping-summary th,
+.Mapping-summary td {
+  text-align: left
+}
+
+.List-buttons {
+  display: flex;
+  justify-content: space-around;
+}

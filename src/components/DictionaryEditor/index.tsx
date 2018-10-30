@@ -44,7 +44,7 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" >
-              Dictionary Editor
+              Dictionary: {(this.props.dictionary || {}).name}
             </Typography>
             <Button
               onClick={this.props.closeDictionaryEditor}

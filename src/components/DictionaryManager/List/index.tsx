@@ -4,13 +4,14 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Edit from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button'
 import ConfirmDialog from '../../ConfirmDialog'
 
-const MappingSummaryTable = () => (
+const MappingSummaryTable = ({ mappings }: any) => (
   <table className='Mapping-summary'>
     <thead>
       <tr>
@@ -20,21 +21,13 @@ const MappingSummaryTable = () => (
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Something</td>
-        <td>A</td>
-        <td>B</td>
-      </tr>
-      <tr>
-        <td>Another</td>
-        <td>A</td>
-        <td>B</td>
-      </tr>
-      <tr>
-        <td>Else</td>
-        <td>A</td>
-        <td>B</td>
-      </tr>
+      {mappings.map(({ field, from, to }: { field: string, from: string, to: string}, i: string) => (
+        <tr key={i}>
+          <td>{field}</td>
+          <td>{from}</td>
+          <td>{to}</td>
+        </tr>
+      ))}
     </tbody>
   </table>
 )
@@ -91,17 +84,24 @@ export default class DictionaryList extends React.Component<DictionaryListProps,
     )
   }
 
-  item({ name, id }: { name: string, id: string}, i: number) {
+  item({ name, id, mappings }: { name: string, id: string, mappings: any}, i: number) {
     return (
       <ExpansionPanel className='Dictionary-panel' key={i}>
         <ExpansionPanelSummary>
-          <Typography>{name}</Typography>
+          <Typography>Dictionary: {name}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Grid item xs={6}>
-            <MappingSummaryTable />
+          <Grid item xs={8}>
+            {
+              mappings.length > 0 ?
+                <MappingSummaryTable mappings={mappings} />:
+                <Typography variant="h6" color="inherit" >
+                  No mappings
+                </Typography>
+            }
+
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             {this.buttons(id)}
           </Grid>
         </ExpansionPanelDetails>
@@ -111,7 +111,7 @@ export default class DictionaryList extends React.Component<DictionaryListProps,
 
   buttons(id: string) {
     return (
-      <div>
+      <div className="List-buttons">
         <Button
           onClick={() => this.props.openEditor(id)}
           variant="fab"

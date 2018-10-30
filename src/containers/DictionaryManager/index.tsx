@@ -3,9 +3,10 @@ import DictionaryManager from '../../components/DictionaryManager'
 import { creators } from '../../state/Dictionaries'
 import { creators as uiCreators } from '../../state/UI'
 import { StateInt } from '../../state/State.types'
+import { populateDictionariesMappings } from '../../selectors'
 
-const mapStateToProps = ({ dictionaries }: StateInt) => ({
-  dictionaries
+const mapStateToProps = ({ dictionaries, mappings }: StateInt) => ({
+  dictionaries: populateDictionariesMappings(dictionaries, mappings)
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
