@@ -28,6 +28,7 @@ export default class AddMapping extends React.Component<AddMappingInt> {
           <AddIcon />
         </Button>
         <TextField
+          label="Map on new field name"
           value={this.state.value}
           onChange={this.onChange}
           error={error}

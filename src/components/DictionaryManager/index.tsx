@@ -68,7 +68,7 @@ export default class DictionaryManager extends React.Component<DictionaryManager
           error={doesNameExist}
           helperText={doesNameExist ? 'Dictionary name already exists.' : ''}
           className="Text-input"
-          label="Name"
+          label="New dictionary name"
           value={this.state.newDictionaryName}
           onChange={(event) => this.updateName(event.target.value)}
           margin="normal"
