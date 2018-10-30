@@ -89,7 +89,13 @@ const reducers: DictionaryReducersInt = {
     }
     return mappingHelper(state, action, transform)
   },
-  select: (state, action) => selectHelper(state, action, true),
+  select: (state, action) => {
+    const unselectedList = state.map(dictionary => ({
+      ...dictionary,
+      selected: false
+    }))
+    return selectHelper(unselectedList, action, true)
+  },
   unselect: (state, action) => selectHelper(state, action, false)
 }
 
