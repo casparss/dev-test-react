@@ -2,10 +2,11 @@ import * as React from 'react'
 import TextField from '@material-ui/core/TextField'
 import AddIcon from '@material-ui/icons/Add'
 import Button from '@material-ui/core/Button'
+import { MappingInt } from '../../../state/Mappings/Mappings.types'
 
 interface AddMappingInt {
   actions: any,
-  mappings: any
+  mappings: MappingInt[]
 }
 
 export default class AddMapping extends React.Component<AddMappingInt> {

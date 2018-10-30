@@ -67,7 +67,7 @@ const INITIAL_STATE: UIInt = {
   }
 }
 
-export const ui = (state: UIInt = INITIAL_STATE, action:any) => {
+export const ui = (state: UIInt = INITIAL_STATE, action: any) => {
   switch(action.type) {
     case SELECT_TAB:
       return reducers.selectTab(state, action)

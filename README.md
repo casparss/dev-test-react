@@ -23,6 +23,7 @@ Also realised that I haven't quite implemented the correct spec stipulated in th
 - Remove as much use of the any type as possible, replaced with specific types
 - Higher test coverage, more component tests
 - Memoize derived data selectors and transforms
+- Had validation logic maintained within Redux
 - More commentary
 - Tidy up the UI, make more usable
 - Maybe hook up to an DB for persistence

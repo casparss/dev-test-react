@@ -9,6 +9,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import Slide from '@material-ui/core/Slide'
 import './DictionaryEditor.style.scss'
 import MappingTable from './MappingTable'
+import { DictionaryInt } from '../../state/Dictionaries/Dictionaries.types'
 
 function Transition(props:any) {
   return <Slide direction="up" {...props} />
@@ -16,8 +17,8 @@ function Transition(props:any) {
 
 interface DictionaryEditorProps {
   open?: boolean | undefined,
-  closeDictionaryEditor: any,
-  dictionary: any,
+  closeDictionaryEditor(): any,
+  dictionary: DictionaryInt,
   actions: any
 }
 

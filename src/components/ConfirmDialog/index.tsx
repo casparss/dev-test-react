@@ -10,8 +10,8 @@ interface ConfirmDialogProps {
   open?: boolean | undefined,
   message: string,
   title: string,
-  onConfirm?: any,
-  onClose?: any,
+  onConfirm?(): any,
+  onClose?(): any,
 }
 
 export default class ConfirmDialog extends React.Component<ConfirmDialogProps> {
