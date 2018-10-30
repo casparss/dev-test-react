@@ -64,10 +64,6 @@ export default class MappingTable extends React.Component<MappingTableProps> {
         />
       )
   }
-
-  editRow(id: string) {
-    console.log(id)
-  }
 }
 
 interface MappingRowPropsInt {

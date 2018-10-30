@@ -15,12 +15,7 @@ export default class DictionarySelector extends React.Component<DictionarySelect
     checked: [0],
   }
 
-  toggleDictionarySelect = (id: any, value: boolean) => () => {
-    console.log(id, value)
-  }
-
   toggle(id: any, value: boolean) {
-    console.log(id, value)
     this.props.actions[value ? 'select' : 'unselect'](id)
   }
 

@@ -7,16 +7,13 @@ import { StateInt } from '../../state/State.types'
 import { selectDictionaryById } from '../../selectors'
 import * as uniqid from 'uniqid'
 
-const mapStateToProps = (state: StateInt) => {
-  console.log('state',state)
-  return {
-    open: state.ui.editMappings.isEditing,
-    dictionary: selectDictionaryById(
-      state,
-      state.ui.editMappings.dictionaryId || ''
-    )
-  }
-}
+const mapStateToProps = (state: StateInt) => ({
+  open: state.ui.editMappings.isEditing,
+  dictionary: selectDictionaryById(
+    state,
+    state.ui.editMappings.dictionaryId || ''
+  )
+})
 
 const mapDispatchToProps = (dispatch: any) => ({
   closeDictionaryEditor: () => dispatch(uiCreators.closeDictionaryEditor()),
