@@ -61,6 +61,7 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
             dictionary={this.props.dictionary}
           />
         </div>
+        <p className="Foot-note">Read me - I was trying to be clever and only did validation on the duplicate field names as oppose to the: clones of froms and different tos. This is an oversight, something that if I had time I would have gone back and corrected. Read the readme.md for more information.</p>
       </Dialog>
     )
   }
