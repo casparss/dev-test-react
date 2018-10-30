@@ -11,7 +11,6 @@ interface TransformViewProps {
 }
 
 export default class TransformView extends React.Component<TransformViewProps> {
-
   get tableHead() {
     return (
       <thead>
