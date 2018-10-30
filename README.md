@@ -1,5 +1,15 @@
 ## React Typescript, Redux dev tests
 
+### Get started
+Start project
+```
+yarn start
+```
+Run tests
+```
+yarn test
+```
+
 Hi there, thought I'd give you a readme to give you some context.
 
 Because I was under time limit to try to finish the functionality today, there are more uses of the 'any' cast than I would prefer.
