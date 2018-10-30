@@ -9,6 +9,9 @@ Also realised that I haven't quite implemented the correct spec stipulated in th
 
 ### Things I would do with more time
 - Made sure design matched spec, what i have implemented is slightly different
-- Remove as much use of the any type as possible, replaced with specific Typescript
-- More coverage of unit tests, there are currently 20 tests, but I would like to cover the components with more tests
+- Remove as much use of the any type as possible, replaced with specific types
+- Higher test coverage, more component tests
 - Memoize derived data selectors and transforms
+- More commentary
+- Tidy up the UI, make more usable
+- Maybe hook up to an DB for persistence
