@@ -12,10 +12,6 @@ export const tableHead = [
   label:'Gender'
 },
 {
-  name: 'email',
-  label:'Email'
-},
-{
   name: 'city',
   label:'City'
 },
