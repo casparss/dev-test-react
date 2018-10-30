@@ -25,7 +25,6 @@ export default class DictionarySelector extends React.Component<DictionarySelect
   }
 
   render() {
-    console.log('this.props', this.props)
     return (
       <div>
         <Typography variant="h6" color="inherit">Dictionary Selector</Typography>
