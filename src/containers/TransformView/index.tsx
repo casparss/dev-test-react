@@ -2,9 +2,14 @@ import { connect } from "react-redux"
 import TransformView from '../../components/TransformView'
 import { creators } from '../../state/Dictionaries'
 import { StateInt } from '../../state/State.types'
+import { populateDictionariesMappings } from '../../selectors'
+import { tableTransformer } from '../../utils/Transform'
 
-const mapStateToProps = ({ data, dictionaries }: StateInt) => ({
-  data,
+const mapStateToProps = ({ data, dictionaries, mappings }: StateInt) => ({
+  data: tableTransformer(
+    data,
+    populateDictionariesMappings(dictionaries, mappings)
+  ),
   dictionaries
 })
 

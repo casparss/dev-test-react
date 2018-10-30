@@ -3,7 +3,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-
 import Typography from '@material-ui/core/Typography'
 
 interface DictionarySelectorInt {
@@ -14,11 +13,10 @@ interface DictionarySelectorInt {
 export default class DictionarySelector extends React.Component<DictionarySelectorInt> {
   state = {
     checked: [0],
-  };
+  }
 
   toggleDictionarySelect = (id: any, value: boolean) => () => {
     console.log(id, value)
-
   }
 
   toggle(id: any, value: boolean) {
