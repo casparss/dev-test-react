@@ -9,5 +9,6 @@ export interface ActionInt {
 export interface StateInt {
   dictionaries: DictionaryInt[],
   ui: UIInt,
-  mappings: MappingsInt
+  mappings: MappingsInt,
+  data: any
 }

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import Layout from './containers/Layout'
 import { store } from './state'
 import DictionaryManager from './containers/DictionaryManager'
-import TransformView from './components/TransformView'
+import TransformView from './containers/TransformView'
 import TheBrief from './components/TheBrief'
 
 const tabs: Array<Array<any>> = [
