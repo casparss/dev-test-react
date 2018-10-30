@@ -14,3 +14,4 @@ Also realised that I haven't quite implemented the correct spec stipulated in th
 - More commentary
 - Tidy up the UI, make more usable
 - Maybe hook up to an DB for persistence
+- Probably improve the table data model slightly to improve transform performance
