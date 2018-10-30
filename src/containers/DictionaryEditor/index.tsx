@@ -35,8 +35,8 @@ const mapDispatchToProps = (dispatch: any) => ({
       mappingId
     ))
   },
-  editMapping: () => {
-
+  editMapping: (editedMapping: any) => {
+    dispatch(mappingsCreators.editMapping(editedMapping))
   }
 })
 
@@ -50,7 +50,8 @@ const mergeProps = (propsFromState: any, propsFromDispatch: any, ownProps: any) 
       createMapping: (field: string) => propsFromDispatch.createMapping(field, dictionaryId),
       removeMapping: (mappingId: string) => {
         propsFromDispatch.removeMapping(dictionaryId, mappingId)
-      }
+      },
+      editMapping: propsFromDispatch.editMapping
     }
   }
 }

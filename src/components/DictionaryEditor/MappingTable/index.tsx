@@ -6,9 +6,10 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import Edit from '@material-ui/icons/Edit'
+import TextField from '@material-ui/core/TextField'
 import './MappingTable.style.scss'
 import AddMapping from './AddMapping.component'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 interface MappingTableProps {
   dictionary: any,
@@ -48,30 +49,64 @@ export default class MappingTable extends React.Component<MappingTableProps> {
   }
 
   get body() {
-    return this.props.dictionary.mappings.map(this.row.bind(this))
-  }
-
-  row({ id, field, from, to }: { id: string, field: any, from: any, to: any}, i: string) {
-    return (
-      <TableRow key={i}>
-        <TableCell>{field}</TableCell>
-        <TableCell>{from}</TableCell>
-        <TableCell>{to}</TableCell>
-        <TableCell>
-          <Button
-            onClick={() => this.editRow(id)}
-            variant="fab"
-            color="secondary"
-            aria-label="Edit"
-          >
-            <Edit />
-          </Button>
-        </TableCell>
-      </TableRow>
-    )
+    return this.props.dictionary.mappings
+      .map((mappings: any, i: number) =>
+        <MappingRow
+          key={i}
+          {...mappings}
+          onChange={newMapping => this.props.actions.editMapping(newMapping)}
+          onDelete={(mappingId: string) => this.props.actions.removeMapping(mappingId)}
+        />
+      )
   }
 
   editRow(id: string) {
     console.log(id)
+  }
+}
+
+interface MappingRowPropsInt {
+  onChange(state: any): void,
+  onDelete(state: any): void
+}
+
+class MappingRow extends React.Component<MappingRowPropsInt> {
+  state = {
+    ...this.props
+  }
+
+  updateField = (fieldName: string, value: string) => {
+    this.setState({ [fieldName]: value })
+    this.props.onChange(this.state)
+  }
+
+  field(fieldName: string) {
+    return (
+      <TableCell>
+        <TextField
+          value={this.state[fieldName]}
+          onChange={(event) => this.updateField(fieldName, event.target.value)}
+        />
+      </TableCell>
+    )
+  }
+
+  render() {
+    return (
+      <TableRow>
+        {this.field('field')}
+        {this.field('from')}
+        {this.field('to')}
+        <TableCell>
+          <Button
+            onClick={() => this.props.onDelete(this.state.id)}
+            variant="fab"
+            aria-label="Remove"
+          >
+            <DeleteIcon />
+          </Button>
+        </TableCell>
+      </TableRow>
+    )
   }
 }
