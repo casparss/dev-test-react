@@ -1,14 +1,18 @@
 import { connect } from "react-redux"
 import TransformView from '../../components/TransformView'
-import { creators } from '../../state/UI'
+import { creators } from '../../state/Dictionaries'
 import { StateInt } from '../../state/State.types'
 
-const mapStateToProps = ({ data }: StateInt) => ({
-  data: data
+const mapStateToProps = ({ data, dictionaries }: StateInt) => ({
+  data,
+  dictionaries
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-  selectTab: (tabIndex: number) => dispatch(creators.selectTab(tabIndex))
+  actions: {
+    select: (id: string) => dispatch(creators.select(id)),
+    unselect: (id: string) => dispatch(creators.unselect(id))
+  }
 })
 
 export default connect(

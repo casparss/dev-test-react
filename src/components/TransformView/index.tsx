@@ -2,9 +2,12 @@ import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import './TransformView.style.scss'
 import DictionarySelector from './DictionarySelector'
+import Paper from '@material-ui/core/Paper'
 
 interface TransformViewProps {
-  data: any
+  data: any,
+  dictionaries: any,
+  actions: any
 }
 
 export default class TransformView extends React.Component<TransformViewProps> {
@@ -14,7 +17,7 @@ export default class TransformView extends React.Component<TransformViewProps> {
       <thead>
         <tr>
           {
-            this.props.data.tableBody.map((row: any, i: number) => (
+            this.props.data.tableHead.map((row: any, i: number) => (
               <th key={i}>{row.label}</th>
             ))
           }
@@ -37,18 +40,23 @@ export default class TransformView extends React.Component<TransformViewProps> {
   render() {
     return (
       <div className="Container">
-        <Grid item xs={2}>
-          <h2>Dictionaries</h2>
-          <DictionarySelector />
+        <Grid item xs={3}>
+          <Paper className="Side-paper">
+            <DictionarySelector
+              dictionaries={this.props.dictionaries}
+              actions={this.props.actions}
+            />
+          </Paper>
         </Grid>
-        <Grid item xs={10}>
-          <h1>Main</h1>
-          <table className='Mapping-summary'>
-            {this.tableHead}
-            <tbody>
-              {this.tableBody}
-            </tbody>
-          </table>
+        <Grid item xs={9}>
+          <Paper className="Main-table-paper">
+            <table className='Mapping-summary'>
+              {this.tableHead}
+              <tbody>
+                {this.tableBody}
+              </tbody>
+            </table>
+          </Paper>
         </Grid>
       </div>
     )

@@ -4,7 +4,7 @@ import {
   DictionaryReducersInt,
   DictionaryInt
 } from './Dictionaries.types'
-import { arrayReplaceItem } from '../../utils/Transform'
+import { replaceItemByID, findByID } from '../../utils/Transform'
 
 /**
  * Actions
@@ -14,6 +14,8 @@ export const ADD_DICTIONARY: string = 'ADD_DICTIONARY'
 export const REMOVE_DICTIONARY: string = 'REMOVE_DICTIONARY'
 export const ADD_MAPPING_ID: string = 'ADD_MAPPING_ID'
 export const REMOVE_MAPPING_ID: string = 'REMOVE_MAPPING_ID'
+export const SELECT_DICTIONARY: string = 'SELECT_DICTIONARY'
+export const UNSELECT_DICTIONARY: string = 'UNSELECT_DICTIONARY'
 
 /**
  * Creators
@@ -45,6 +47,18 @@ export const creators: DictionaryCreatorsInt = {
       dictionaryId,
       mappingId
     }
+  }),
+  select: (dictionaryId) => ({
+    type: SELECT_DICTIONARY,
+    payload: {
+      dictionaryId
+    }
+  }),
+  unselect: (dictionaryId) => ({
+    type: UNSELECT_DICTIONARY,
+    payload: {
+      dictionaryId
+    }
   })
 }
 
@@ -57,7 +71,8 @@ const reducers: DictionaryReducersInt = {
     const newDictionary: DictionaryInt = {
       id: uniqid(),
       name: action.payload.name,
-      mappings: []
+      mappings: [],
+      selected: false
     }
     return [...state, newDictionary]
   },
@@ -73,12 +88,28 @@ const reducers: DictionaryReducersInt = {
       return mappings.filter((idToRemove: string) => idToRemove !== mappingId)
     }
     return mappingHelper(state, action, transform)
-  }
+  },
+  select: (state, action) => selectHelper(state, action, true),
+  unselect: (state, action) => selectHelper(state, action, false)
 }
 
 /**
  * Helpers
  */
+const selectHelper = (state: any, action: any, selected: boolean) => {
+  const { dictionaryId } = action.payload
+  const dictionary = findByID(dictionaryId, state)
+  const newDictionary = {
+    ...dictionary,
+    selected
+  }
+
+  return replaceItemByID(
+    state,
+    dictionaryId,
+    newDictionary
+  )
+}
 
 const mappingHelper = (state: any, action: any, transformFunc: any) => {
   const { dictionaryId, mappingId } = action.payload
@@ -91,9 +122,9 @@ const mappingHelper = (state: any, action: any, transformFunc: any) => {
     mappings
   }
 
-  return arrayReplaceItem(
+  return replaceItemByID(
     state,
-    ({ id }: { id: string }) => id === dictionaryId,
+    dictionaryId,
     newDictionary
   )
 }
@@ -112,6 +143,10 @@ export const dictionaries = (state: DictionaryInt[] = [], action: any) => {
       return reducers.addMapping(state, action)
     case REMOVE_MAPPING_ID:
       return reducers.removeMapping(state, action)
+    case SELECT_DICTIONARY:
+      return reducers.select(state, action)
+    case UNSELECT_DICTIONARY:
+      return reducers.unselect(state, action)
     default:
       return state
   }

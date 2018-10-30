@@ -1,5 +1,4 @@
 import { ActionInt } from '../State.types'
-import { MappingInt } from '../Mappings/Mappings.types'
 
 /**
  * Models
@@ -10,7 +9,8 @@ export type MappingID = string
 export interface DictionaryInt {
   id: string,
   name: string,
-  mappings: MappingID[]
+  mappings: MappingID[],
+  selected: boolean
 }
 
 /**
@@ -43,6 +43,18 @@ export interface RemoveMappingPayloadInt extends ActionInt {
   }
 }
 
+export interface SelectPayloadInt extends ActionInt {
+  payload: {
+    dictionaryId: string
+  }
+}
+
+export interface UnselectPayloadInt extends ActionInt {
+  payload: {
+    dictionaryId: string
+  }
+}
+
 /**
  * Creators
  */
@@ -63,11 +75,21 @@ export interface RemoveMappingCreatorFunc {
   (dictionaryId: string, mappingId: string): RemoveMappingPayloadInt
 }
 
+export interface SelectCreatorFunc {
+  (dictionaryId: string): SelectPayloadInt
+}
+
+export interface UnselectCreatorFunc {
+  (dictionaryId: string): UnselectPayloadInt
+}
+
 export interface DictionaryCreatorsInt {
   addDictionary: AddDictionaryCreatorFunc,
   removeDictionary: RemoveDictionaryCreatorFunc,
   addMapping: AddMappingCreatorFunc,
-  removeMapping: RemoveMappingCreatorFunc
+  removeMapping: RemoveMappingCreatorFunc,
+  select: SelectCreatorFunc,
+  unselect: UnselectCreatorFunc
 }
 
 /**
@@ -90,9 +112,19 @@ interface RemoveMappingReducerFunc {
   (state: DictionaryInt[], action: RemoveMappingPayloadInt): DictionaryInt[]
 }
 
+interface SelectReducerFunc {
+  (state: DictionaryInt[], action: SelectPayloadInt): DictionaryInt[]
+}
+
+interface UnselectReducerFunc {
+  (state: DictionaryInt[], action: UnselectPayloadInt): DictionaryInt[]
+}
+
 export interface DictionaryReducersInt {
   addDictionary: AddDictionaryReducerFunc,
   removeDictionary: RemoveDictionaryReducerFunc,
   addMapping: AddMappingReducerFunc,
-  removeMapping: RemoveMappingReducerFunc
+  removeMapping: RemoveMappingReducerFunc,
+  select: SelectReducerFunc,
+  unselect: UnselectReducerFunc
 }

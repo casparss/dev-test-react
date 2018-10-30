@@ -38,7 +38,8 @@ describe('Dictionaries', () => {
             'abc123',
             'ref456',
             'ref987'
-          ]
+          ],
+          selected: false
         },
         {
           id: '5477',
@@ -47,7 +48,8 @@ describe('Dictionaries', () => {
             'abcdd3',
             'refaa6',
             'refw7'
-          ]
+          ],
+          selected: false
         }
       ]
       const state = dictionaries(stateFixture, creators.addMapping(dictionaryId, mappingId))
@@ -65,7 +67,8 @@ describe('Dictionaries', () => {
             'abc123',
             'ref456',
             'ref987'
-          ]
+          ],
+          selected: false
         },
         {
           id: '5477',
@@ -74,7 +77,8 @@ describe('Dictionaries', () => {
             'abcdd3',
             'refaa6',
             'refw7'
-          ]
+          ],
+          selected: false
         }
       ]
       const state = dictionaries(stateFixture, creators.removeMapping(dictionaryId, mappingId))
