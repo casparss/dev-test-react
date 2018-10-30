@@ -2,8 +2,7 @@
 
 Hi there, thought I'd give you a readme to give you some context.
 
-Because I was under time limit to try to finish the functionality today, there are quite a few uses of the any type and not everything is covered under unit tests. About 80% of state related
-functions/objects are covered with tests.
+Because I was under time limit to try to finish the functionality today, there are more uses of the 'any' cast than I would prefer.
 
 Also realised that I haven't quite implemented the correct spec stipulated in the brief. I've done validation on duplicate fields which is slightly different to what was asked.
 
