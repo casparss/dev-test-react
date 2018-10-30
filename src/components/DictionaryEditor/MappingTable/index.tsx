@@ -32,7 +32,10 @@ export default class MappingTable extends React.Component<MappingTableProps> {
             {this.body}
           </TableBody>
         </Table>
-        <AddMapping actions={this.props.actions} />
+        <AddMapping
+          actions={this.props.actions}
+          mappings={this.props.dictionary.mappings}
+        />
       </Paper>
     )
   }
@@ -54,8 +57,10 @@ export default class MappingTable extends React.Component<MappingTableProps> {
         <MappingRow
           key={i}
           {...mappings}
+          mappings={this.props.dictionary.mappings}
           onChange={newMapping => this.props.actions.editMapping(newMapping)}
-          onDelete={(mappingId: string) => this.props.actions.removeMapping(mappingId)}
+          onDelete={({ id }: { id: string }) =>
+            this.props.actions.removeMapping(id)}
         />
       )
   }
@@ -67,7 +72,8 @@ export default class MappingTable extends React.Component<MappingTableProps> {
 
 interface MappingRowPropsInt {
   onChange(state: any): void,
-  onDelete(state: any): void
+  onDelete(state: any): void,
+  mappings: any
 }
 
 class MappingRow extends React.Component<MappingRowPropsInt> {
@@ -94,12 +100,15 @@ class MappingRow extends React.Component<MappingRowPropsInt> {
   render() {
     return (
       <TableRow>
-        {this.field('field')}
+        <TableCell>
+          {this.state['field']}
+        </TableCell>
         {this.field('from')}
         {this.field('to')}
         <TableCell>
           <Button
-            onClick={() => this.props.onDelete(this.state.id)}
+            className="Delete-mapping"
+            onClick={() => this.props.onDelete(this.state)}
             variant="fab"
             aria-label="Remove"
           >
@@ -109,4 +118,6 @@ class MappingRow extends React.Component<MappingRowPropsInt> {
       </TableRow>
     )
   }
+
+
 }

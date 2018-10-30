@@ -4,7 +4,8 @@ import AddIcon from '@material-ui/icons/Add'
 import Button from '@material-ui/core/Button'
 
 interface AddMappingInt {
-  actions: any
+  actions: any,
+  mappings: any
 }
 
 export default class AddMapping extends React.Component<AddMappingInt> {
@@ -13,12 +14,13 @@ export default class AddMapping extends React.Component<AddMappingInt> {
   }
 
   render() {
+    const { error, helperText, disabled } = this.fieldValidation
     return (
       <div className="Edit-bar">
         <Button
           onClick={() => this.createMapping()}
-          disabled={this.buttonDisabled}
-          className="Add-button"
+          disabled={disabled}
+          className="Add-mapping"
           variant="fab"
           color="primary"
           aria-label="Add"
@@ -28,6 +30,8 @@ export default class AddMapping extends React.Component<AddMappingInt> {
         <TextField
           value={this.state.value}
           onChange={this.onChange}
+          error={error}
+          helperText={helperText}
         />
       </div>
     )
@@ -42,21 +46,22 @@ export default class AddMapping extends React.Component<AddMappingInt> {
     this.setState({ value: event.target.value });
   }
 
-  get buttonDisabled() {
-    // this.state.
-    return false
+  get fieldValidation() {
+    const isEmpty = this.state.value === ''
+    const isFieldConflict = this.isFieldConflict()
+    return {
+      error: isFieldConflict,
+      helperText: isFieldConflict ? 'Fieldname is already mapped' : '',
+      disabled: isEmpty || isFieldConflict
+    }
+  }
+
+  isFieldConflict() {
+    const { mappings } = this.props
+    return !!mappings.find(({ field }: { field: any }) => this.state.value === field)
   }
 
   reset() {
     this.setState({ value: '' })
   }
 }
-
-/*
-error={doesNameExist}
-helperText={doesNameExist ? 'Dictionary name already exists.' : ''}
-label="Name"
-value={this.state.newDictionaryName}
-margin="normal"
-variant="outlined"
- */

@@ -47,7 +47,8 @@ const mergeProps = (propsFromState: any, propsFromDispatch: any, ownProps: any) 
     ...ownProps,
     ...propsFromDispatch,
     actions: {
-      createMapping: (field: string) => propsFromDispatch.createMapping(field, dictionaryId),
+      createMapping: (field: string) =>
+        propsFromDispatch.createMapping(field, dictionaryId),
       removeMapping: (mappingId: string) => {
         propsFromDispatch.removeMapping(dictionaryId, mappingId)
       },

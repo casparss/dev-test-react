@@ -21,7 +21,7 @@ describe('DictionaryManager', () => {
       .simulate('change', {target: {value: fixture.name}});
 
     wrapper
-      .find('.Add-button')
+      .find('.Add-dictionary')
       .simulate('click')
 
     expect(mock.addDictionary).toHaveBeenCalledTimes(1)

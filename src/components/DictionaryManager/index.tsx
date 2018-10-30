@@ -55,7 +55,7 @@ export default class DictionaryManager extends React.Component<DictionaryManager
     return (
       <div className="Edit-bar">
         <Button
-          className="Add-button"
+          className="Add-dictionary"
           onClick={() => this.addDictionary()}
           variant="fab"
           color="primary"
