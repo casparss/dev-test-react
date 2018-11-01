@@ -9,7 +9,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import Slide from '@material-ui/core/Slide'
 import './DictionaryEditor.style.scss'
 import MappingTable from './MappingTable'
-import { DictionaryInt } from '../../state/Dictionaries/Dictionaries.types'
+// import { DictionaryInt } from '../../state/Dictionaries/Dictionaries.types'
 
 function Transition(props:any) {
   return <Slide direction="up" {...props} />
@@ -18,8 +18,8 @@ function Transition(props:any) {
 interface DictionaryEditorProps {
   open?: boolean | undefined,
   closeDictionaryEditor(): any,
-  dictionary: DictionaryInt,
-  actions: any
+  //@TODO: want to use DictionaryInt here but it's causing null type error, investigate
+  dictionary: any
 }
 
 interface DictionaryEditorState {
@@ -56,12 +56,8 @@ export default class DictionaryEditor extends React.Component<DictionaryEditorPr
           </Toolbar>
         </AppBar>
         <div className="Container">
-          <MappingTable
-            actions={this.props.actions}
-            dictionary={this.props.dictionary}
-          />
+          <MappingTable dictionary={this.props.dictionary} />
         </div>
-        <p className="Foot-note">Read me - I was trying to be clever and only did validation on the duplicate field names as oppose to the: clones of froms and different tos. This is an oversight, something that if I had time I would have gone back and corrected. Read the readme.md for more information.</p>
       </Dialog>
     )
   }

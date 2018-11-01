@@ -12,13 +12,16 @@ import {
 describe('Mappings', () => {
   describe('Creators', () => {
     it('creates mapping.', () => {
-      const fixture = {
+      const fieldsFixture = {
         field: 'hey',
-        from: '',
-        to: '',
+        from: 'dwwda',
+        to: 'wdadwa',
+      }
+      const fixture = {
+        ...fieldsFixture,
         isNew: true
       }
-      const action: CreateMappingPayloadInt = creators.createMapping(fixture.field)
+      const action: CreateMappingPayloadInt = creators.createMapping(fieldsFixture)
       expect(action.payload.field).toBe(fixture.field)
       expect(action.payload.from).toBe(fixture.from)
       expect(action.payload.to).toBe(fixture.to)
@@ -46,12 +49,15 @@ describe('Mappings', () => {
   })
   describe('Reducers', () => {
     it('creates mapping.', () => {
+      const fieldsFixture = {
+        field: 'hey',
+        from: 'dwwda',
+        to: 'wdadwa',
+      }
       const stateFixture: MappingInt[] = [
         {
           id: 'abc123',
-          field: 'Pants',
-          from: 'Briefs',
-          to: 'Boxers',
+          ...fieldsFixture
         },
         {
           id: 'def456',
@@ -60,11 +66,11 @@ describe('Mappings', () => {
           to: 'Football',
         },
       ]
-      const state = mappings(stateFixture, creators.createMapping('hello'))
+      const state = mappings(stateFixture, creators.createMapping(fieldsFixture))
       const newMapping: any = state.find(({ isNew }) => isNew === true)
-      expect(newMapping.field).toBe('hello')
-      expect(newMapping.from).toBe('')
-      expect(newMapping.to).toBe('')
+      expect(newMapping.field).toBe(fieldsFixture.field)
+      expect(newMapping.from).toBe(fieldsFixture.from)
+      expect(newMapping.to).toBe(fieldsFixture.to)
     })
 
     it('removes mapping.', () => {

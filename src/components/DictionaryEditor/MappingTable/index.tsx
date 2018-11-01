@@ -2,18 +2,16 @@ import * as React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import TableHead from '@material-ui/core/TableHead'
 import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import './MappingTable.style.scss'
-import AddMapping from './AddMapping.component'
-import DeleteIcon from '@material-ui/icons/Delete'
+import MappingRow from '../../../containers/MappingRow'
+import { MappingInt } from '../../../state/Mappings/Mappings.types'
 
 interface MappingTableProps {
-  dictionary: any,
-  actions: any
+  //@TODO: use dictionary int
+  dictionary: any
 }
 
 export default class MappingTable extends React.Component<MappingTableProps> {
@@ -30,12 +28,9 @@ export default class MappingTable extends React.Component<MappingTableProps> {
           </TableHead>
           <TableBody>
             {this.body}
+            <MappingRow create />
           </TableBody>
         </Table>
-        <AddMapping
-          actions={this.props.actions}
-          mappings={this.props.dictionary.mappings}
-        />
       </Paper>
     )
   }
@@ -53,67 +48,8 @@ export default class MappingTable extends React.Component<MappingTableProps> {
 
   get body() {
     return this.props.dictionary.mappings
-      .map((mappings: any, i: number) =>
-        <MappingRow
-          key={i}
-          {...mappings}
-          mappings={this.props.dictionary.mappings}
-          onChange={newMapping => this.props.actions.editMapping(newMapping)}
-          onDelete={({ id }: { id: string }) =>
-            this.props.actions.removeMapping(id)}
-        />
+      .map((mapping: MappingInt, i: number, mappingList: MappingInt[]) =>
+        <MappingRow key={i} mapping={mapping} />
       )
   }
-}
-
-interface MappingRowPropsInt {
-  onChange(state: any): void,
-  onDelete(state: any): void,
-  mappings: any
-}
-
-class MappingRow extends React.Component<MappingRowPropsInt> {
-  state = {
-    ...this.props
-  }
-
-  updateField = (fieldName: string, value: string) => {
-    this.setState({ [fieldName]: value })
-    this.props.onChange(this.state)
-  }
-
-  field(fieldName: string) {
-    return (
-      <TableCell>
-        <TextField
-          value={this.state[fieldName]}
-          onChange={(event) => this.updateField(fieldName, event.target.value)}
-        />
-      </TableCell>
-    )
-  }
-
-  render() {
-    return (
-      <TableRow>
-        <TableCell>
-          {this.state['field']}
-        </TableCell>
-        {this.field('from')}
-        {this.field('to')}
-        <TableCell>
-          <Button
-            className="Delete-mapping"
-            onClick={() => this.props.onDelete(this.state)}
-            variant="fab"
-            aria-label="Remove"
-          >
-            <DeleteIcon />
-          </Button>
-        </TableCell>
-      </TableRow>
-    )
-  }
-
-
 }

@@ -5,11 +5,14 @@ import { ActionInt } from '../State.types'
  * Models
  */
 
-export interface MappingInt {
-  id: string,
+export interface MappingFieldsInt {
   field: string,
   from: string,
   to: string,
+}
+
+export interface MappingInt extends MappingFieldsInt {
+  id: string,
   isNew?: boolean
 }
 
@@ -36,7 +39,7 @@ export interface EditMappingPayloadInt extends ActionInt {
  */
 
 export interface CreateMappingCreatorFunc {
-  (field: string, id?: string): CreateMappingPayloadInt
+  (fields: MappingFieldsInt, id?: string): CreateMappingPayloadInt
 }
 
 export interface RemoveMappingCreatorFunc {

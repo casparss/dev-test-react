@@ -2,7 +2,8 @@ import * as uniqid from 'uniqid'
 import {
   MappingsCreatorsInt,
   MappingsReducerInt,
-  MappingInt
+  MappingInt,
+  MappingFieldsInt
 } from './Mappings.types'
 
 /**
@@ -18,13 +19,11 @@ export const EDIT_MAPPING: string = 'EDIT_MAPPING'
 */
 
 export const creators: MappingsCreatorsInt = {
-  createMapping: (field: string, id?: string) => ({
+  createMapping: (fields: MappingFieldsInt, id?: string) => ({
     type: CREATE_MAPPING,
     payload: {
       id: id ? id : uniqid(),
-      field,
-      from: '',
-      to: '',
+      ...fields,
       isNew: true
     }
   }),

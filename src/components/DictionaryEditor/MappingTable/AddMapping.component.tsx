@@ -1,4 +1,6 @@
 import * as React from 'react'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
 import TextField from '@material-ui/core/TextField'
 import AddIcon from '@material-ui/icons/Add'
 import Button from '@material-ui/core/Button'
@@ -17,25 +19,47 @@ export default class AddMapping extends React.Component<AddMappingInt> {
   render() {
     const { error, helperText, disabled } = this.fieldValidation
     return (
-      <div className="Edit-bar">
-        <Button
-          onClick={() => this.createMapping()}
-          disabled={disabled}
-          className="Add-mapping"
-          variant="fab"
-          color="primary"
-          aria-label="Add"
-        >
-          <AddIcon />
-        </Button>
-        <TextField
-          label="Map on new field name"
-          value={this.state.value}
-          onChange={this.onChange}
-          error={error}
-          helperText={helperText}
-        />
-      </div>
+      <TableRow className="Edit-bar">
+        <TableCell>
+          <TextField
+            label="Map on field"
+            value={this.state.value}
+            onChange={this.onChange}
+            error={error}
+            helperText={helperText}
+          />
+        </TableCell>
+        <TableCell>
+          <TextField
+            label="Map on new field name"
+            value={this.state.value}
+            onChange={this.onChange}
+            error={error}
+            helperText={helperText}
+          />
+        </TableCell>
+        <TableCell>
+          <TextField
+            label="Map on new field name"
+            value={this.state.value}
+            onChange={this.onChange}
+            error={error}
+            helperText={helperText}
+          />
+        </TableCell>
+        <TableCell>
+          <Button
+            onClick={() => this.createMapping()}
+            disabled={disabled}
+            className="Add-mapping"
+            variant="fab"
+            color="primary"
+            aria-label="Add"
+          >
+            <AddIcon />
+          </Button>
+        </TableCell>
+      </TableRow>
     )
   }
 
