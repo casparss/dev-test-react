@@ -35,7 +35,7 @@ export default class MappingRow extends React.Component<MappingRowPropsInt> {
   render() {
     return (
       <TableRow>
-        {this.field('field', this.validateField)}
+        {this.field('field')}
         {this.field('from', this.validateFrom)}
         {this.field('to')}
         {this.buttons}
