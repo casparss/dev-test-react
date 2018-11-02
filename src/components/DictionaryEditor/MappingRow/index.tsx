@@ -111,16 +111,25 @@ export default class MappingRow extends React.Component<MappingRowPropsInt> {
   }
 
   get validateFrom() {
-    const error = this.isFieldConflict
+    const error = this.isFieldConflict && this.isFromConflict
     return {
       error,
-      helperText: error ? 'From is already mapped' : '',
+      helperText: error ? 'From is already mapped on this field.' : '',
     }
   }
 
   get isFieldConflict() {
-    return !!this.props.dictionary.mappings
-      .filter(({ id }: any) => id !== this.state.id)
+    return !!this.filterOutThis
+      .find(({ field }: any) => field === this.state.field)
+  }
+
+  get isFromConflict() {
+    return !!this.filterOutThis
       .find(({ from }: any) => from === this.state.from)
+  }
+
+  get filterOutThis() {
+    return this.props.dictionary.mappings
+      .filter(({ id }: any) => id !== this.state.id)
   }
 }
