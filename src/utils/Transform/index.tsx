@@ -1,4 +1,6 @@
 import { mapValues } from 'lodash'
+import { getSelectedDictionaries } from '../../selectors'
+import { DictionaryInt, DictionaryPopulatedInt } from '../../state/Dictionaries/Dictionaries.types'
 
 export const arrayReplaceItem = (array: Array<any>, predicate: any, replacement: any) => {
   const newArray = [...array]
@@ -17,12 +19,8 @@ export const replaceItemByID = (array: Array<any>, idArg: string, replacement: a
 export const findByID = (idArg: string, collection: Array<any>) =>
   collection.find(({ id } : {id: string}) => id === idArg)
 
-//@TODO: move to selectors
-const getSelected = (dictionaries: any) =>
-  dictionaries.find(({ selected }: { selected: any }) => selected)
-
-export const tableTransformer = (data: any, dictionaries: any) => {
-  const selectedDictionary = getSelected(dictionaries)
+export const tableTransformer = (data: any, dictionaries: DictionaryPopulatedInt[]) => {
+  const selectedDictionary = getSelectedDictionaries(dictionaries)
   if(!selectedDictionary) return data
 
   const { mappings } = selectedDictionary

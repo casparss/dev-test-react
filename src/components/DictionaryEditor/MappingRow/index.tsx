@@ -118,7 +118,7 @@ export default class MappingRow extends React.Component<MappingRowPropsInt> {
     }
   }
 
-  isConflict() {
+  get isConflict() {
     return !!this.props.dictionary.mappings
       .filter(({ id }) => id !== this.state.id)
       .find(({ field, from }) => field === this.state.field && from === this.state.from)

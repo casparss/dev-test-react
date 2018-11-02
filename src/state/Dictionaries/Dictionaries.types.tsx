@@ -1,5 +1,5 @@
 import { ActionInt } from '../State.types'
-import { MappingInt } from '../state/Mappings/Mappings.types'
+import { MappingInt } from '../Mappings/Mappings.types'
 /**
  * Models
  */

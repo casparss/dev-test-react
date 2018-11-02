@@ -1,4 +1,4 @@
-import { DictionaryInt } from '../state/Dictionaries/Dictionaries.types'
+import { DictionaryInt, DictionaryPopulatedInt } from '../state/Dictionaries/Dictionaries.types'
 import { MappingInt } from '../state/Mappings/Mappings.types'
 
 export const dictionaryById = (state: any, dictionaryId: string) =>
@@ -19,3 +19,6 @@ export const selectDictionaryById = (state: any, dictionaryId: string) => {
   return dictionary ?
     populateMappings(dictionary, state.mappings) : null
 }
+
+export const getSelectedDictionaries = (dictionaries: DictionaryPopulatedInt[]) =>
+  dictionaries.find(({ selected }: any) => selected)
