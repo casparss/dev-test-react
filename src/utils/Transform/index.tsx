@@ -1,6 +1,6 @@
 import { mapValues } from 'lodash'
 import { getSelectedDictionaries } from '../../selectors'
-import { DictionaryInt, DictionaryPopulatedInt } from '../../state/Dictionaries/Dictionaries.types'
+import { DictionaryPopulatedInt } from '../../state/Dictionaries/Dictionaries.types'
 
 export const arrayReplaceItem = (array: Array<any>, predicate: any, replacement: any) => {
   const newArray = [...array]

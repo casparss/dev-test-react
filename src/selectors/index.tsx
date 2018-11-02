@@ -10,8 +10,14 @@ export const populateMappings = (dictionary: DictionaryInt, mappings: MappingInt
     .map((mappingId: string) => mappings.find(({ id }) => id === mappingId))
 })
 
-export const populateDictionariesMappings = (dictionaries: DictionaryInt[], mappings: MappingInt[]) => {
-  return dictionaries.map(dictionary => populateMappings(dictionary, mappings))
+//@TODO:
+/*
+didn't want to use an any cast here for dictionaries, but for some weird reason Typescript
+kept complaining that in containers/Dictionaries/index.tsx the populated type was being
+used when it definitely wasn't, needs further investigation
+*/
+export const populateDictionariesMappings = (dictionaries: any, mappings: MappingInt[]) => {
+  return dictionaries.map((dictionary: any) => populateMappings(dictionary, mappings))
 }
 
 export const selectDictionaryById = (state: any, dictionaryId: string) => {
