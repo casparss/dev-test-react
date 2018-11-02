@@ -3,7 +3,7 @@ import {
   MappingInt,
   MappingFieldsInt
 } from '../../../state/Mappings/Mappings.types'
-import { DictionaryInt } from '../../../state/Dictionaries/Dictionaries.types'
+import { DictionaryPopulatedInt } from '../../../state/Dictionaries/Dictionaries.types'
 import { mapValues } from 'lodash'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -14,7 +14,7 @@ import TableRow from '@material-ui/core/TableRow'
 import './MappingRow.style.scss'
 
 interface MappingRowPropsInt {
-  dictionary: DictionaryInt,
+  dictionary: DictionaryPopulatedInt,
   mappingList: MappingInt[],
   mapping?: MappingInt,
   editMapping(mapping: MappingInt): void,
@@ -111,25 +111,16 @@ export default class MappingRow extends React.Component<MappingRowPropsInt> {
   }
 
   get validateFrom() {
-    const error = this.isFieldConflict && this.isFromConflict
+    const error = this.isConflict
     return {
       error,
       helperText: error ? 'From is already mapped on this field.' : '',
     }
   }
 
-  get isFieldConflict() {
-    return !!this.filterOutThis
-      .find(({ field }: any) => field === this.state.field)
-  }
-
-  get isFromConflict() {
-    return !!this.filterOutThis
-      .find(({ from }: any) => from === this.state.from)
-  }
-
-  get filterOutThis() {
-    return this.props.dictionary.mappings
-      .filter(({ id }: any) => id !== this.state.id)
+  isConflict() {
+    return !!this.props.dictionary.mappings
+      .filter(({ id }) => id !== this.state.id)
+      .find(({ field, from }) => field === this.state.field && from === this.state.from)
   }
 }

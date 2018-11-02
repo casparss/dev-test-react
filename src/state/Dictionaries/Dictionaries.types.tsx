@@ -1,5 +1,5 @@
 import { ActionInt } from '../State.types'
-
+import { MappingInt } from '../state/Mappings/Mappings.types'
 /**
  * Models
  */
@@ -10,6 +10,13 @@ export interface DictionaryInt {
   id: string,
   name: string,
   mappings: MappingID[],
+  selected: boolean
+}
+
+export interface DictionaryPopulatedInt {
+  id: string,
+  name: string,
+  mappings: MappingInt[],
   selected: boolean
 }
 
