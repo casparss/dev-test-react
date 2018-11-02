@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { defer } from 'lodash'
 import {
   MappingInt,
   MappingFieldsInt
@@ -93,8 +92,9 @@ export default class MappingRow extends React.Component<MappingRowPropsInt> {
   }
 
   updateField = (fieldName: string, value: string) => {
-    this.setState({ [fieldName]: value })
-    if(!this.props.create) defer(() => this.props.editMapping(this.state))
+    this.setState({ [fieldName]: value }, () => {
+      if(!this.props.create) this.props.editMapping(this.state)
+    })
   }
 
   createMapping() {
