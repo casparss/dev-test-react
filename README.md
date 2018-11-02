@@ -26,3 +26,4 @@ Because I was under time limit to try to finish the functionality today, there a
 - Maybe hook up to an DB for persistence
 - Probably improve the table data model slightly to improve transform performance
 - Would have used CSS modules as oppose to just vanilla SASS
+- Apply a library like immutable.js to reducers to improve readability of immutable actions
